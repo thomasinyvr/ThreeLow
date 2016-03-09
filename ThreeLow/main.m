@@ -7,11 +7,27 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Dice.h"
+#import "Game.h"
+#import "InputCollector.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        // insert code here...
-        NSLog(@"Hello, World!");
+        InputCollector *menu = [[InputCollector alloc] init];
+        
+        
+        Game *game = [[Game alloc] init];
+//        NSMutableArray *myDice = [NSMutableArray array];
+        
+        for (int i= 1 ; i <= 5; i++) {
+            Dice *dice = [[Dice alloc] init];
+            [game.myDice addObject:dice];
+            
+            NSLog(@"%i", dice.currentValue);
+        }
+        
+        
+        
     }
     return 0;
 }
