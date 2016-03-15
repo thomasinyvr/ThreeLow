@@ -14,20 +14,35 @@
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         InputCollector *menu = [[InputCollector alloc] init];
-        
-        
         Game *game = [[Game alloc] init];
-//        NSMutableArray *myDice = [NSMutableArray array];
         
-        for (int i= 1 ; i <= 5; i++) {
-            Dice *dice = [[Dice alloc] init];
-            [game.myDice addObject:dice];
+        while (true) {
             
-            NSLog(@"%i", dice.currentValue);
+            NSString *userInput = [menu inputForPrompt:@"What would you like to do\nroll - roll dice?\nhold - hold a dice\nreset - reset all dice"];
+            if ([userInput isEqualToString:@"hold"]) {
+                NSString *userInputForDiceHeld = [menu inputForPrompt:@"Which one?"];
+                
+                //convert string to number
+                int x = [userInputForDiceHeld intValue];
+                
+                // from number, look up array for specific die
+                Dice* aDice = game.myDice[x];
+                
+                // pass in the die to the holdDice
+                [game holdDice:aDice];
+                
+            }else{
+                if ([userInput isEqualToString:@"roll"]){
+                    [game rollDice];
+                
+                }else{
+                    if ([userInput isEqualToString:@"reset"]) {
+                        [game resetDice];
+                    }
+                }
+            }
         }
-        
-        
-        
     }
     return 0;
+
 }

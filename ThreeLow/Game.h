@@ -14,6 +14,14 @@
 @property (nonatomic) NSMutableArray *myDice;
 @property (nonatomic) NSMutableSet *heldDice;
 
--(void)holdDice;
+
+-(void)rollDice;
+
+-(void)holdDice:(Dice*)dice;
+
+-(void)resetDice;
+
+-(void)score;
+
 
 @end
